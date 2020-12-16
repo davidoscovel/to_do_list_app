@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import TitleBanner from "./TitleBanner";
+import Filter from "./Filter";
+import ToDoList from "./ToDoList/ToDoList"
 
 class Home extends Component {
     constructor(props){
@@ -37,6 +39,8 @@ class Home extends Component {
         return(
             <div>
                 <TitleBanner/>
+                <Filter/>
+                <ToDoList/>
             </div>
         )
     }
