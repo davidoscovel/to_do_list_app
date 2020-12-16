@@ -4,7 +4,12 @@ import styled from 'styled-components'
 
 const Section = styled.section`
     padding-top: 30px;
-    padding-left: 200px;
+    // padding-left: 200px;
+`
+
+const FilterText = styled.p`
+    font-size: 18px;
+    font-weight: 400;
 `
 
 const options = [
@@ -18,8 +23,10 @@ const Filter = () => {
     return(
         <Section>
             <div className='row'>
-                <div className='col-md-2'>
-                    <label htmlFor='filter-options'>Filter by:</label>
+                <div className='d-inline'>
+                    <FilterText>Filter by:</FilterText>
+                </div>
+                <div className='d-inline col-4'>
                     <Select id='filter-options' options={options} class='form-control' display/>
                 </div>
             </div>
