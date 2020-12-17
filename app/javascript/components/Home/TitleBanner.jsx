@@ -12,6 +12,7 @@ const Title = styled.h1`
     font-weight: 700;
     font-size: 50px;
     text-align: center;
+    font-family: Chalkduster, fantasy;
 `
 
 const SubTitle = styled.p`
@@ -19,13 +20,14 @@ const SubTitle = styled.p`
     font-weight: 400;
     font-size: 20px;
     text-align: center;
+    font-family: Chalkduster, fantasy;
 `
 
 const TitleBanner = () => {
     return(
         <Section>
         <div>
-        <Title>TO-DO-LIST</Title>
+        <Title>TO DO LIST</Title>
         <SubTitle>A Ruby on Rails Application with React</SubTitle>
         </div>
         </Section>

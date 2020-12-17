@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import {GrCheckboxSelected, GrCheckbox} from "react-icons/gr"
+import {BsFillCaretDownFill, BsExclamationSquare} from "react-icons/bs"
 
 const Border = styled.section`
     margin-top: 20px;
@@ -13,17 +15,66 @@ const Title = styled.h1`
     font-weight: 600;
     font-size: 25px;
 `
+
+const Status = styled.p`
+    margin-top: 5px;
+    font-size: 10px;
+    font-weight: 800;
+`
+
+const StatusIcon = (props) => {
+    if(props.status === "Complete")
+        return(
+            <div className='container'>
+                <div className='row justify-content-center'>
+                    <GrCheckboxSelected size='30px'/>
+                </div>
+                <div className='row justify-content-center'>
+                    <Status>Complete</Status>
+                </div>
+            </div>
+        )
+    else if(props.status === "Overdue") {
+        return (
+            <div className='container'>
+                <div className='row justify-content-center'>
+                    <BsExclamationSquare size='30px'/>
+                </div>
+                <div className='row justify-content-center'>
+                    <Status>Past Due</Status>
+                </div>
+            </div>
+        )
+    }
+    else
+        return (
+            <div className='container'>
+                <div className='row justify-content-center'>
+                    <GrCheckbox size='30px'/>
+                </div>
+                <div className='row justify-content-center'>
+                    <Status>Pending</Status>
+                </div>
+            </div>
+        )
+
+}
+
 const ToDoItem = (props) => {
     return(
         <Border>
             <div className='container'>
-                <div className='row'>
+                <div className='row '>
                     <div className='col-5 offset-1'>
                         <Title>{props.title}</Title>
                     </div>
-                    <div className='col-2 offset-3'>
-                        <p>{props.status}</p>
-                        <a>\/</a>
+                    <div className='col-2 offset-4 text-center'>
+                        <StatusIcon status={props.status}/>
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col-1 offset-6'>
+                        <BsFillCaretDownFill/>
                     </div>
                 </div>
             </div>

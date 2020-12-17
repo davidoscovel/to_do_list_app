@@ -14,7 +14,7 @@ class Home extends Component {
                     title: 'Laundry',
                     description: 'Wash the whites.',
                     deadline: new Date(2020, 12, 23),
-                    status: "Pending",
+                    status: "Overdue",
                     active: false
                 },
                 {
@@ -23,7 +23,7 @@ class Home extends Component {
                     description: 'Build To-Do-List app.',
                     deadline: new Date(2020, 12, 20),
                     status: "Pending",
-                    active: true
+                    active: false
                 },
                 {
                     id: 3,
