@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import {GrCheckboxSelected, GrCheckbox} from "react-icons/gr"
-import {BsFillCaretDownFill, BsExclamationSquare} from "react-icons/bs"
+import {BsFillCaretUpFill, BsExclamationSquare} from "react-icons/bs"
 
 const Border = styled.section`
     margin-top: 20px;
@@ -22,46 +22,52 @@ const Status = styled.p`
     font-size: 10px;
     font-weight: 800;
 `
+const Description = styled.p`
+    padding-left: 20px;
+    font-size: 18px;
+    font-weight: 300;
+    font-family: "Marker Felt", fantasy;
+`
 
 const StatusIcon = (props) => {
     if(props.status === "Complete")
         return(
             <div className='container'>
-                <div className='row justify-content-center'>
-                    <GrCheckboxSelected size='30px'/>
-                </div>
-                <div className='row justify-content-center'>
-                    <Status>Complete</Status>
-                </div>
-            </div>
-        )
-    else if(props.status === "Overdue") {
+        <div className='row justify-content-center'>
+        <GrCheckboxSelected size='30px'/>
+        </div>
+        <div className='row justify-content-center'>
+        <Status>Complete</Status>
+        </div>
+        </div>
+)
+else if(props.status === "Overdue") {
         return (
             <div className='container'>
-                <div className='row justify-content-center'>
-                    <BsExclamationSquare size='30px'/>
-                </div>
-                <div className='row justify-content-center'>
-                    <Status>Past Due</Status>
-                </div>
+            <div className='row justify-content-center'>
+            <BsExclamationSquare size='30px'/>
             </div>
-        )
+            <div className='row justify-content-center'>
+            <Status>Past Due</Status>
+        </div>
+        </div>
+    )
     }
     else
         return (
             <div className='container'>
-                <div className='row justify-content-center'>
-                    <GrCheckbox size='30px'/>
-                </div>
-                <div className='row justify-content-center'>
-                    <Status>Pending</Status>
-                </div>
-            </div>
-        )
+        <div className='row justify-content-center'>
+        <GrCheckbox size='30px'/>
+        </div>
+        <div className='row justify-content-center'>
+        <Status>Pending</Status>
+        </div>
+        </div>
+)
 
 }
 
-const ToDoItem = (props) => {
+const ActiveToDoItem = (props) => {
     return(
         <Border>
             <div className='container'>
@@ -74,9 +80,14 @@ const ToDoItem = (props) => {
                     </div>
                 </div>
                 <div className='row'>
+                    <div className='col-6 offset-1'>
+                            <Description>{props.description}</Description>
+                    </div>
+                </div>
+                <div className='row'>
                     <div className='col-1 offset-6'>
                         <div onClick={props.toggleActive}>
-                            <BsFillCaretDownFill/>
+                            <BsFillCaretUpFill/>
                         </div>
                     </div>
                 </div>
@@ -85,4 +96,4 @@ const ToDoItem = (props) => {
     )
 }
 
-export default ToDoItem
+export default ActiveToDoItem
