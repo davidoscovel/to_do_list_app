@@ -33,43 +33,28 @@ class Home extends Component {
                     status: "Complete",
                     active: false
                 },
-                {
-                    id: 4,
-                    title: 'Laundry',
-                    description: 'Wash the whites.',
-                    deadline: new Date(2020, 12, 23),
-                    status: "Overdue",
-                    active: false
-                },
-                {
-                    id: 5,
-                    title: 'Build App',
-                    description: 'Build To-Do-List app.',
-                    deadline: new Date(2020, 12, 20),
-                    status: "Pending",
-                    active: false
-                },
-                {
-                    id: 6,
-                    title: 'Write Speech',
-                    description: 'Write speech for graduation',
-                    deadline: new Date(2020, 12, 23),
-                    status: "Complete",
-                    active: false
-                },
             ]
         }
     }
 
     toggleActive(item, event){
         event.preventDefault();
-
         let to_dos = [...this.state.to_dos];
         item.active = !item.active;
         to_dos[item.id - 1] = item;
         this.setState({to_dos});
 
-        debugger
+    }
+
+    addItem(item, event){
+        event.preventDefault();
+        let i = item()
+        if(i != null){
+            let to_dos = [...this.state.to_dos];
+            to_dos.push(i);
+            this.setState({to_dos});
+        }
+
     }
 
     render() {
@@ -83,7 +68,7 @@ class Home extends Component {
                             <ToDoList toggleActive={this.toggleActive.bind(this)} to_dos={this.state.to_dos}/>
                         </div>
                         <div className='col-4'>
-                            <AddToDo/>
+                            <AddToDo addItem={this.addItem.bind(this)} nextId={this.state.to_dos.length + 1}/>
                         </div>
                     </div>
                 </div>
