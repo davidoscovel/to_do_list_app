@@ -13,25 +13,25 @@ class Home extends Component {
                     id: 1,
                     title: 'Laundry',
                     description: 'Wash the whites.',
-                    deadline: new Date(2020, 12, 23),
-                    status: "Overdue",
-                    active: false
+                    status: "Pending",
+                    active: false,
+                    editing: false,
                 },
                 {
                     id: 2,
                     title: 'Build App',
                     description: 'Build a To-Do-List app using ruby on rails and react.',
-                    deadline: new Date(2020, 12, 20),
                     status: "Pending",
-                    active: false
+                    active: false,
+                    editing: false,
                 },
                 {
                     id: 3,
                     title: 'Write Speech',
                     description: 'Write speech for graduation',
-                    deadline: new Date(2020, 12, 23),
                     status: "Complete",
-                    active: false
+                    active: false,
+                    editing: false,
                 },
             ],
             filter: "All"
@@ -49,7 +49,7 @@ class Home extends Component {
 
     addItem(item, event) {
         event.preventDefault();
-        let i = item()
+        let i = item();
         if (i != null) {
             let to_dos = [...this.state.to_dos];
             to_dos.push(i);
@@ -65,6 +65,50 @@ class Home extends Component {
         )
     };
 
+    markComplete(item, event) {
+        event.preventDefault();
+        let to_dos = [...this.state.to_dos];
+        item.status = "Complete";
+        to_dos[item.id - 1] = item;
+        this.setState({to_dos});
+    }
+
+    markPending(item, event) {
+        event.preventDefault();
+        let to_dos = [...this.state.to_dos];
+        item.status = "Pending";
+        to_dos[item.id - 1] = item;
+        this.setState({to_dos});
+    }
+
+    deleteItem(item, event) {
+        event.preventDefault();
+        let to_dos = [...this.state.to_dos];
+        item.status = "Deleted";
+        to_dos[item.id - 1] = item;
+        this.setState({to_dos});
+    }
+
+    toggleEdit(item, event) {
+        event.preventDefault();
+        let to_dos = [...this.state.to_dos];
+        item.editing = !item.editing;
+        to_dos[item.id - 1] = item;
+        this.setState({to_dos});
+    }
+
+    saveChanges(item, event) {
+        debugger
+        event.preventDefault();
+        let i = item();
+        let to_dos = [...this.state.to_dos];
+        to_dos[i.id - 1].title = i.title;
+        to_dos[i.id - 1].description = i.description;
+        to_dos[i.id - 1].editing = false;
+        this.setState({to_dos});
+
+    }
+
     render() {
         return (
             <div>
@@ -74,7 +118,11 @@ class Home extends Component {
                         <div className='col-8'>
                             <Filter changeFilter={this.changeFilter.bind(this)}/>
                             <ToDoList toggleActive={this.toggleActive.bind(this)} to_dos={this.state.to_dos}
-                                      filter={this.state.filter}/>
+                                      filter={this.state.filter} markComplete={this.markComplete.bind(this)}
+                                      markPending={this.markPending.bind(this)}
+                                      saveChanges={this.saveChanges.bind(this)}
+                                      deleteItem={this.deleteItem.bind(this)}
+                                      toggleEdit={this.toggleEdit.bind(this)}/>
                         </div>
                         <div className='col-4'>
                             <AddToDo addItem={this.addItem.bind(this)} nextId={this.state.to_dos.length + 1}/>

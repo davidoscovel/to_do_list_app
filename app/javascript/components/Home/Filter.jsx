@@ -16,8 +16,7 @@ const FilterText = styled.p`
 const options = [
     {value: 'All', label: 'All'},
     {value: 'Pending', label: 'Pending'},
-    {value: 'Complete', label: 'Completed'},
-    {value: 'Overdue', label: 'Overdue'}
+    {value: 'Complete', label: 'Completed'}
 ]
 
 class Filter extends Component {

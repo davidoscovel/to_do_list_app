@@ -15,6 +15,7 @@ const AddNew = styled.h1`
 `
 
 class AddToDo extends Component {
+
     nextID = this.props.nextId;
 
     constructor(props) {
@@ -32,9 +33,9 @@ class AddToDo extends Component {
             id: this.nextID,
             title: this.state.title,
             description: this.state.description,
-            deadline: new Date(2020, 12, 20),
             status: "Pending",
-            active: false
+            active: false,
+            editing: false
         };
         this.setState({
             title: '',
