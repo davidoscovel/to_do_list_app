@@ -8,8 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from '../components/Home/Home'
 
 document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(
-    <Home/>,
-    document.body.appendChild(document.createElement('div')),
-  )
+    ReactDOM.render(
+        <Home/>,
+        document.body.appendChild(document.createElement('div')),
+    )
 })

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import Select from 'react-select'
 import styled from 'styled-components'
 
@@ -14,15 +14,15 @@ const FilterText = styled.p`
 `
 
 const options = [
-    { value: 'All', label: 'All' },
-    { value: 'Pending', label: 'Pending' },
-    { value: 'Complete', label: 'Completed' },
-    { value: 'Overdue', label: 'Overdue' }
+    {value: 'All', label: 'All'},
+    {value: 'Pending', label: 'Pending'},
+    {value: 'Complete', label: 'Completed'},
+    {value: 'Overdue', label: 'Overdue'}
 ]
 
-class Filter extends Component{
+class Filter extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
     }
 
@@ -31,14 +31,15 @@ class Filter extends Component{
     }
 
     render() {
-        return(
+        return (
             <Section>
                 <div className='row'>
                     <div className='d-inline'>
                         <FilterText>Filter by:</FilterText>
                     </div>
                     <div className='d-inline col-4'>
-                        <Select id='filter-options' options={options} onChange={this.filterChange} class='form-control' display/>
+                        <Select id='filter-options' options={options} onChange={this.filterChange} class='form-control'
+                                display/>
                     </div>
                 </div>
             </Section>

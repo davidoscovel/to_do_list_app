@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import styled from 'styled-components'
 import {GrCheckboxSelected, GrCheckbox} from "react-icons/gr"
 import {BsFillCaretDownFill, BsExclamationSquare} from "react-icons/bs"
@@ -24,8 +24,8 @@ const Status = styled.p`
 `
 
 const StatusIcon = (props) => {
-    if(props.status === "Complete")
-        return(
+    if (props.status === "Complete")
+        return (
             <div className='container'>
                 <div className='row justify-content-center'>
                     <GrCheckboxSelected size='30px'/>
@@ -35,7 +35,7 @@ const StatusIcon = (props) => {
                 </div>
             </div>
         )
-    else if(props.status === "Overdue") {
+    else if (props.status === "Overdue") {
         return (
             <div className='container'>
                 <div className='row justify-content-center'>
@@ -46,8 +46,7 @@ const StatusIcon = (props) => {
                 </div>
             </div>
         )
-    }
-    else
+    } else
         return (
             <div className='container'>
                 <div className='row justify-content-center'>
@@ -62,7 +61,7 @@ const StatusIcon = (props) => {
 }
 
 const ToDoItem = (props) => {
-    return(
+    return (
         <Border>
             <div className='container'>
                 <div className='row '>

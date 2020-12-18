@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import styled from 'styled-components'
 
 const Section = styled.section`
@@ -24,12 +24,12 @@ const SubTitle = styled.p`
 `
 
 const TitleBanner = () => {
-    return(
+    return (
         <Section>
-        <div>
-        <Title>TO DO LIST</Title>
-        <SubTitle>A Ruby on Rails Application with React</SubTitle>
-        </div>
+            <div>
+                <Title>TO DO LIST</Title>
+                <SubTitle>A Ruby on Rails Application with React</SubTitle>
+            </div>
         </Section>
     )
 }

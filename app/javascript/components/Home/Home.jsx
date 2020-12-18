@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import TitleBanner from "./TitleBanner";
 import Filter from "./Filter";
 import ToDoList from "./ToDoList/ToDoList"
 import AddToDo from "./AddToDo/AddToDo";
 
 class Home extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             to_dos: [
@@ -38,7 +38,7 @@ class Home extends Component {
         }
     }
 
-    toggleActive(item, event){
+    toggleActive(item, event) {
         event.preventDefault();
         let to_dos = [...this.state.to_dos];
         item.active = !item.active;
@@ -47,10 +47,10 @@ class Home extends Component {
 
     }
 
-    addItem(item, event){
+    addItem(item, event) {
         event.preventDefault();
         let i = item()
-        if(i != null){
+        if (i != null) {
             let to_dos = [...this.state.to_dos];
             to_dos.push(i);
             this.setState({to_dos});
@@ -58,22 +58,23 @@ class Home extends Component {
 
     }
 
-    changeFilter(f, event){
+    changeFilter(f, event) {
         this.setState({
-            filter: f
+                filter: f
             }
         )
     };
 
     render() {
-        return(
+        return (
             <div>
                 <TitleBanner/>
                 <div className='container w-75'>
                     <div className='row'>
                         <div className='col-8'>
                             <Filter changeFilter={this.changeFilter.bind(this)}/>
-                            <ToDoList toggleActive={this.toggleActive.bind(this)} to_dos={this.state.to_dos} filter={this.state.filter}/>
+                            <ToDoList toggleActive={this.toggleActive.bind(this)} to_dos={this.state.to_dos}
+                                      filter={this.state.filter}/>
                         </div>
                         <div className='col-4'>
                             <AddToDo addItem={this.addItem.bind(this)} nextId={this.state.to_dos.length + 1}/>

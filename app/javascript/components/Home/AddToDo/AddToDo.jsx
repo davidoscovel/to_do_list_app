@@ -16,7 +16,8 @@ const AddNew = styled.h1`
 
 class AddToDo extends Component {
     nextID = this.props.nextId;
-    constructor(props){
+
+    constructor(props) {
         super(props);
         this.state = {
             title: '',
@@ -25,7 +26,7 @@ class AddToDo extends Component {
     }
 
     createItem = () => {
-        if(this.state.title === '' || this.state.description === '')
+        if (this.state.title === '' || this.state.description === '')
             return null;
         let item = {
             id: this.nextID,
@@ -57,7 +58,7 @@ class AddToDo extends Component {
     render() {
         let addItem = this.props.addItem.bind(this, this.createItem);
         this.nextID = this.props.nextId;
-        return(
+        return (
             <div className='container'>
                 <div className='row justify-content-center'>
                     <AddNew> Add new To Do </AddNew>
@@ -68,15 +69,18 @@ class AddToDo extends Component {
                             <form>
                                 <div className="form-group">
                                     <label htmlFor="exampleFormControlInput1">Title:</label>
-                                    <input type="title" className="form-control" id="exampleFormControlInput1" value={this.state.title} onChange={this.handleTitleChange}/>
+                                    <input type="title" className="form-control" id="exampleFormControlInput1"
+                                           value={this.state.title} onChange={this.handleTitleChange}/>
                                 </div>
 
                                 <div className="form-group">
                                     <label htmlFor="exampleFormControlTextarea1">Description:</label>
-                                    <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" value={this.state.description} onChange={this.handleDescriptionChange}/>
+                                    <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"
+                                              value={this.state.description} onChange={this.handleDescriptionChange}/>
                                 </div>
                                 <div className='text-center'>
-                                    <button type="button" onClick={addItem} className="btn btn-outline-primary">Add</button>
+                                    <button type="button" onClick={addItem} className="btn btn-outline-primary">Add
+                                    </button>
                                 </div>
                             </form>
                         </div>
