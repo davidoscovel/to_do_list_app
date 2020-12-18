@@ -15,11 +15,38 @@ class ToDoList extends Component {
     render() {
         const to_do_items = this.props.to_dos.map((data) => {
             let toggleActive = this.props.toggleActive.bind(this, data);
-            return (
-                data.active ?
-                    <ActiveToDoItem toggleActive={toggleActive} key={data.id} title={data.title} description={data.description} status={data.status} deadline={data.deadline} active={data.active}/>:
-                <ToDoItem toggleActive={toggleActive} key={data.id} title={data.title} description={data.description} status={data.status} deadline={data.deadline} active={data.active}/>
-            )
+                if(this.props.filter ==="All"){
+                    if (data.active) {
+                        return (
+                            <ActiveToDoItem toggleActive={toggleActive} key={data.id} title={data.title}
+                                            description={data.description} status={data.status}
+                                            deadline={data.deadline} active={data.active}/>
+                        )
+                    } else {
+                        return (
+                            <ToDoItem toggleActive={toggleActive} key={data.id} title={data.title}
+                                      description={data.description} status={data.status} deadline={data.deadline}
+                                      active={data.active}/>
+                        )
+                    }
+                }
+                else {
+                    if (data.status === this.props.filter) {
+                        if (data.active) {
+                            return (
+                                <ActiveToDoItem toggleActive={toggleActive} key={data.id} title={data.title}
+                                                description={data.description} status={data.status}
+                                                deadline={data.deadline} active={data.active}/>
+                            )
+                        } else {
+                            return (
+                                <ToDoItem toggleActive={toggleActive} key={data.id} title={data.title}
+                                          description={data.description} status={data.status} deadline={data.deadline}
+                                          active={data.active}/>
+                            )
+                        }
+                    }
+                }
         })
         return(
             <Section>

@@ -33,7 +33,8 @@ class Home extends Component {
                     status: "Complete",
                     active: false
                 },
-            ]
+            ],
+            filter: "All"
         }
     }
 
@@ -57,6 +58,13 @@ class Home extends Component {
 
     }
 
+    changeFilter(f, event){
+        this.setState({
+            filter: f
+            }
+        )
+    };
+
     render() {
         return(
             <div>
@@ -64,8 +72,8 @@ class Home extends Component {
                 <div className='container w-75'>
                     <div className='row'>
                         <div className='col-8'>
-                            <Filter/>
-                            <ToDoList toggleActive={this.toggleActive.bind(this)} to_dos={this.state.to_dos}/>
+                            <Filter changeFilter={this.changeFilter.bind(this)}/>
+                            <ToDoList toggleActive={this.toggleActive.bind(this)} to_dos={this.state.to_dos} filter={this.state.filter}/>
                         </div>
                         <div className='col-4'>
                             <AddToDo addItem={this.addItem.bind(this)} nextId={this.state.to_dos.length + 1}/>

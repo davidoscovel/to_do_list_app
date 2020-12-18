@@ -8,6 +8,7 @@ const Section = styled.section`
 `
 
 const FilterText = styled.p`
+    padding-top: 5px;
     font-size: 18px;
     font-weight: 400;
 `
@@ -15,23 +16,36 @@ const FilterText = styled.p`
 const options = [
     { value: 'All', label: 'All' },
     { value: 'Pending', label: 'Pending' },
-    { value: 'Completed', label: 'Completed' },
+    { value: 'Complete', label: 'Completed' },
     { value: 'Overdue', label: 'Overdue' }
 ]
 
-const Filter = () => {
-    return(
-        <Section>
-            <div className='row'>
-                <div className='d-inline'>
-                    <FilterText>Filter by:</FilterText>
+class Filter extends Component{
+
+    constructor(props){
+        super(props);
+    }
+
+    filterChange = (event) => {
+        this.props.changeFilter(event.value)
+    }
+
+    render() {
+        return(
+            <Section>
+                <div className='row'>
+                    <div className='d-inline'>
+                        <FilterText>Filter by:</FilterText>
+                    </div>
+                    <div className='d-inline col-4'>
+                        <Select id='filter-options' options={options} onChange={this.filterChange} class='form-control' display/>
+                    </div>
                 </div>
-                <div className='d-inline col-4'>
-                    <Select id='filter-options' options={options} class='form-control' display/>
-                </div>
-            </div>
-        </Section>
-    )
+            </Section>
+        )
+    }
+
+
 }
 
 export default Filter
