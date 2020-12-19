@@ -6,6 +6,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from '../components/Home/Home'
+import Login from "../components/Home/Login";
 
 document.addEventListener('DOMContentLoaded', () => {
     ReactDOM.render(
