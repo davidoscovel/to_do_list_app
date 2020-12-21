@@ -35,7 +35,7 @@ class Login extends Component {
                                        value={this.state.username} onChange={this.handleUsernameChange}/>
                             </div>
                         </div>
-                        <div className='row justify-content-center' >
+                        <div className='row justify-content-center'>
                             <div className='mt-3'>
                                 <button type="button" onClick={login} className="btn btn-outline-primary">Login
                                 </button>
