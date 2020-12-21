@@ -79,8 +79,13 @@ class Home extends Component {
         item.status = "Pending";
         to_dos[item.id - 1] = item;
         this.setState({to_dos});
-        this.updateItem(to_dos[item.id - 1].dbId, to_dos[item.id - 1]);
-        this.resetState(this.state.username);
+        this.updateItem(to_dos[item.id - 1].dbId, to_dos[item.id - 1])
+            .then(r => {
+            debugger
+            console.log("Item successfully updated.")
+        }).catch(r => {
+            console.log("Item failed to update.")
+        });
     }
 
     deleteItem(item, event) {
@@ -140,7 +145,7 @@ class Home extends Component {
             status: updatedItem.status
         });
         debugger
-        this.resetState(this.state.username)
+        await this.resetState(this.state.username)
     }
 
     login(item, event) {
@@ -154,8 +159,8 @@ class Home extends Component {
             })
     }
 
-    resetState(u){
-        axios.get('/to_do_items.json', {
+    async resetState(u){
+        await axios.get('/to_do_items.json', {
             params: {
                 user: u
             }
