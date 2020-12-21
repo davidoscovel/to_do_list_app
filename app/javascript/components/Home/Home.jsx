@@ -11,32 +11,7 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            to_dos: [
-                // {
-                //     id: 1,
-                //     title: 'Laundry',
-                //     description: 'Wash the whites.',
-                //     status: "Pending",
-                //     active: false,
-                //     editing: false,
-                // },
-                // {
-                //     id: 2,
-                //     title: 'Build App',
-                //     description: 'Build a To-Do-List app using ruby on rails and react.',
-                //     status: "Pending",
-                //     active: false,
-                //     editing: false,
-                // },
-                // {
-                //     id: 3,
-                //     title: 'Write Speech',
-                //     description: 'Write speech for graduation',
-                //     status: "Complete",
-                //     active: false,
-                //     editing: false,
-                // },
-            ],
+            to_dos: [],
             filter: "All",
             loggedIn: false,
             username: ''
@@ -66,11 +41,13 @@ class Home extends Component {
             url: '/to_do_items',
             data: {user: uname, title: i.title, description: i.description, status: i.status}
         }).then(r => {
+            debugger
             console.log("Item Added Successfully.");
-        })
-            .catch(err => {
+        }).catch(err => {
                 console.log(err);
-            })
+        });
+        debugger
+        this.resetState(this.state.username);
     }
 
     changeFilter(f, event) {
@@ -87,7 +64,13 @@ class Home extends Component {
         let pastItem = to_dos[item.id - 1];
         to_dos[item.id - 1] = item;
         this.setState({to_dos});
-        this.updateItem(to_dos[item.id - 1].dbId, to_dos[item.id - 1]);
+        this.updateItem(to_dos[item.id - 1].dbId, to_dos[item.id - 1])
+            .then(r => {
+            debugger
+            console.log("Item successfully updated.")
+        }).catch(r => {
+            console.log("Item failed to update.")
+        });
     }
 
     markPending(item, event) {
@@ -97,6 +80,7 @@ class Home extends Component {
         to_dos[item.id - 1] = item;
         this.setState({to_dos});
         this.updateItem(to_dos[item.id - 1].dbId, to_dos[item.id - 1]);
+        this.resetState(this.state.username);
     }
 
     deleteItem(item, event) {
@@ -105,7 +89,13 @@ class Home extends Component {
         item.status = "Deleted";
         to_dos[item.id - 1] = item;
         this.setState({to_dos});
-        this.updateItem(to_dos[item.id - 1].dbId, to_dos[item.id - 1]);
+        this.updateItem(to_dos[item.id - 1].dbId, to_dos[item.id - 1])
+            .then(r => {
+            debugger
+            console.log("Item successfully updated.")
+        }).catch(r => {
+            console.log("Item failed to update.")
+        });
 
     }
 
@@ -131,28 +121,40 @@ class Home extends Component {
         to_dos[i.id - 1].description = i.description;
         to_dos[i.id - 1].editing = false;
         this.setState({to_dos});
-        this.updateItem(to_dos[i.id - 1].dbId, i);
-    }
-
-    updateItem(dbId, updatedItem){
-        debugger
-        let u = "to_do_items/" + dbId + "/";
-        axios.put(u, {
-            user: updatedItem.user,
-            title: updatedItem.title,
-            description: updatedItem.description,
-            status: updatedItem.status
-        }).then(r => {
+        this.updateItem(to_dos[i.id - 1].dbId, i)
+            .then(r => {
             debugger
             console.log("Item successfully updated.")
         }).catch(r => {
             console.log("Item failed to update.")
-        })
+        });
+    }
+
+    async updateItem(dbId, updatedItem){
+        debugger
+        let u = "to_do_items/" + dbId + "/";
+        let result = await axios.put(u, {
+            user: updatedItem.user,
+            title: updatedItem.title,
+            description: updatedItem.description,
+            status: updatedItem.status
+        });
+        debugger
+        this.resetState(this.state.username)
     }
 
     login(item, event) {
         event.preventDefault();
         let u = item();
+        this.resetState(u);
+        if (item !== '')
+            this.setState({
+                username: u,
+                loggedIn: true
+            })
+    }
+
+    resetState(u){
         axios.get('/to_do_items.json', {
             params: {
                 user: u
@@ -176,11 +178,6 @@ class Home extends Component {
             .catch(data => {
                 console.log(data);
             });
-        if (item !== '')
-            this.setState({
-                username: u,
-                loggedIn: true
-            })
     }
 
     logout(event) {
